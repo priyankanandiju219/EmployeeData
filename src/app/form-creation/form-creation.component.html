@@ -1,0 +1,65 @@
+<div class="row justify-content-center my-5">
+    <div class="col-4">
+        
+        <div class="row">
+          <div class="col mb-2" *ngFor="let item of this.formData.fields">
+            <label for="first_name" class="form-label">{{item.label}}
+            <div *ngIf="item.type === 'select' ">
+                <select  class="rounded-inputs20 select-select col-md-3">
+                    <option *ngFor="let data of item.options"  [value]="data.value">{{data.label}}</option>
+                </select>
+            </div>
+            <div *ngIf="item.type === 'date' ">
+                <input
+                type="date"
+                class="form-control"
+                id="birthDate"
+              />
+            </div>
+        </label>
+          </div>
+          
+        </div>
+        <div class="row"  *ngFor="let item of this.formData.formFields">
+            <div class="col mb-2"  *ngFor="let data of item.fields">
+              <label for="first_name" class="form-label">{{data.label}}</label>
+              <div *ngIf="data.type === 'text'">
+              <input *ngIf="data.validations.isRequired" type="text" class="form-control" placeholder="{{data.placeholder}}"  pattern="{{data.validations.pattern}}"/>
+            </div>
+            <div *ngIf="data.type === 'date'">
+                <input
+                type="date"
+                class="form-control"
+                id="birthDate"
+              />             
+             </div>
+             <div *ngIf="data.type === 'radio'">
+                <label *ngFor="let radiobutton of data.options">
+                    <input type="radio" name="options" (click)="radiobutton.option = radiobutton"
+                    [checked]="radiobutton === radiobutton.options">{{radiobutton.label}}
+                  </label>           
+             </div>
+             <div *ngIf="data.type === 'checkbox'">
+                <div class="row"  *ngFor="let list of data.options">
+                        <input type="checkbox"[checked]="theCheckbox">{{list.label}}
+                </div>
+
+            </div>
+            <div *ngIf="data.type === 'select'">
+                  <select  class="rounded-inputs20 select-select col-md-3">
+                      <option *ngFor="let id of data.options"  [value]="id.value">{{id.label}}</option>
+                  </select>
+              </div>
+          </div>
+
+        </div>
+
+        <br>
+
+      <div class="row">
+        <div class="col mb-2 d-grid">
+          <button type="button" class="btn btn-sm btn-primary" (click)="onSubmit($event)">Validate</button>
+        </div>
+      </div>
+  </div>
+  
