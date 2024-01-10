@@ -63,10 +63,11 @@ export class FormCreationComponent implements OnInit{
 
     //   ]),
     // });    
-}
+  }
 
 
-onSubmit(event : any ){
-  console.log(this.formData);
+
+onSubmit(){
+  console.log(this.userFrom.value);
 }
 }
